@@ -13,6 +13,7 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
+  padding:30px;
   transform: translate(-50%, -50%);
   width: 800px;
   height: 800px;
@@ -35,10 +36,15 @@ body {
     font-size: 18px;
   }
 }
+.img{
+padding-top: 100%;
+width:80%;
+vertical-align:middle;
+}
 
 .signupForm {
   width: 70%;
-  padding: 30px 0;
+  padding: 30% 0;
   background: #813772;
   transition: .2s;
   h2 {
@@ -86,8 +92,7 @@ body {
 <body>
 <div class="signupSection">
   <div class="info">
-    <h2>Login</h2>
-    <p>Placeholder</p>
+      <img src="pt_logo.png" class="img" align="center">
   </div>
   <form action="login_chk.php" method="POST" class="signupForm" name="signupform">
     <ul class="noBullet">

@@ -78,6 +78,7 @@ body {
 
 .signupSection {
   position: absolute;
+  padding:30px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -105,7 +106,7 @@ body {
 
 .signupForm {
   width: 70%;
-  padding: 30px 0;
+  padding: 20% 0;
   background: #813772;
   transition: .2s;
   h2 {
@@ -149,6 +150,12 @@ body {
 	color:#813772;
 }
 
+.img{
+padding-top: 100%;
+width:60%;
+vertical-align:middle;
+}
+
 </style>
 </head>
 <body>
@@ -161,7 +168,7 @@ body {
 <div class="signupSection">
   <div class="info">
     <h2>Add Issue</h2>
-    <p>Placeholder</p>
+    <img src="pt_logo.png" class="img">
   </div>
   <form action="log_issue.php" method="POST" class="signupForm" name="signupform">
     <ul class="noBullet">

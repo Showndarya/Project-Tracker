@@ -127,6 +127,22 @@ background-color:#dfa1a8 !important;
 .container {
     padding: 2px 16px;
 }
+.active{
+	background-color: #813772;
+    color: #111;
+}
+
+.lici {
+	left: 45%;
+   position: relative;
+   transform: translateX(-55%);
+}
+
+.img{
+width:10%;
+height:10%
+vertical-align:middle;
+}
 </style>
 </head>
 
@@ -135,6 +151,7 @@ background-color:#dfa1a8 !important;
   <li><a href="home_page.php">Back</a></li>
   <li><a class="active" href="view_issue.php">My Issues</a></li>
   <li><a href="assign_issue.php">Assigned Issues</a></li>
+  <li class="lici"><img src="nav_logo.png" class="img"></li>
   <li class="lic"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <?php

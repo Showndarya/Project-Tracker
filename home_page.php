@@ -49,9 +49,13 @@ li a:hover {
 }
 
 .lic {
-float:right;
+	float:right;
 }
-
+.lici {
+	left: 50%;
+   position: relative;
+   transform: translateX(-50%);
+}
 .lic a {
     display: block;
     color: #111;
@@ -111,6 +115,11 @@ float:right;
 .container {
     padding: 2px 16px;
 }
+.img{
+width:10%;
+height:10%
+vertical-align:middle;
+}
 </style>
 </head>
 
@@ -118,6 +127,7 @@ float:right;
 <ul>
   <li><a class="active" href="view_issue.php">My Issues</a></li>
   <li><a href="assign_issue.php">Assigned Issues</a></li>
+  <li class="lici"><img src="nav_logo.png" class="img"></li>
   <li class="lic"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <?php
