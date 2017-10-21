@@ -117,9 +117,7 @@ float:right;
 <body>
 <ul>
   <li><a class="active" href="view_issue.php">My Issues</a></li>
-  <li><a href="#news">Assigned Issues</a></li>
-  <li><a href="#contact">Tab</a></li>
-  <li><a href="#about">Tab</a></li>
+  <li><a href="assign_issue.php">Assigned Issues</a></li>
   <li class="lic"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <?php

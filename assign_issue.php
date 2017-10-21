@@ -52,15 +52,26 @@ li a:hover {
   width: 200px;
   left:10px;
   text-align: center;
-  opacity: 1;
+  opacity: 0;
+  transition: opacity .35s ease;
   margin-top:0.8vh;
   margin-right:3vh;
   padding: 12px 48px;
   color: black;
-  background-color:#813772;
+  background-color:#ccc;
   border: solid 2px #111;
   z-index: 1;
   border-radius: 5px;
+}
+.button:hover
+{
+	background-color:#d2d2d2;
+	color:#111;
+}
+
+.card:hover .button 
+{
+  opacity: 1;
 }
 .lic {
 float:right;
@@ -127,6 +138,17 @@ background-color:#dfa1a8 !important;
 .container {
     padding: 2px 16px;
 }
+.inputFields {
+  padding: 10px;
+  width: 150px;
+  border: 1px solid #111;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: #ccc;
+  color: white;
+  outline: none;
+}
 </style>
 </head>
 
@@ -154,12 +176,13 @@ background-color:#dfa1a8 !important;
 	$row = mysqli_fetch_assoc($result);
 	$emp = $row["emp_id"];*/
 	
-	$sql = "SELECT * from issue where emp_id=$user";
+	$sql = "SELECT * from issue where emp_id=$user and assign='1'";
 	$result = mysqli_query($con,$sql);
 	//echo $result;
 	while($row = mysqli_fetch_assoc($result))
 	{
 		//echo mysqli_num_rows($result);
+		$i = $row["issue_id"];
 		$in = $row['issue_name'];
 		$ci = $row["cat_id"];
 		$st = $row["status"];
@@ -184,6 +207,8 @@ background-color:#dfa1a8 !important;
 		echo "<h4>$in</h4> ";
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";
+		echo "<form action='update_status.php' method='post'><input type='text' name='id' value=$i hidden>";
+		echo "<input type='text' class='inputFields button' placeholder='Enter new status' name='status' value=''><input type='submit' value='Update Status' class='button' name='submit'></form>";
 		echo "</div>";
 	}
 ?>

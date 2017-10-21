@@ -56,6 +56,18 @@
     color: #111;
 }
 
+.licr {
+float:right;
+}
+
+.licr a {
+    display: block;
+    color: #111;
+    background-color: #813772;
+    text-align: center;
+    padding: 14px 30px;
+    text-decoration: none;
+}
 body {
   margin: 0;
   padding: 0;
@@ -140,11 +152,11 @@ body {
 </style>
 </head>
 <body>
-<ul class="ulc lic">
-	<li class="lic"><a href="home_page.php">Back</a></li>
-  <li class="lic"><a class="active" href="#home">My Issues</a></li>
-  <li class="lic"><a href="#news">Assigned Issues</a></li>
-  <li class="lic"><a href="#about">Tab</a></li>
+<ul class="ulc">
+  <li class="lic"><a href="home_page.php">Back</a></li>
+  <li class="lic"><a href="view_issue.php">My Issues</a></li>
+  <li class="lic"><a href="assign_issue.php">Assigned Issues</a></li>
+  <li class="licr"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <div class="signupSection">
   <div class="info">
