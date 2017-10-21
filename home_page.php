@@ -1,7 +1,19 @@
 <?php
-session_start();
-$emp_id = $_SESSION["user"];
-//echo $emp_id;
+	session_start();
+	$emp_id = $_SESSION["user"];
+	$con = mysqli_connect('localhost', 'root', '', 'projectracker');
+	if($con) 
+	{
+	    //echo "Connection established Successfully<br />";
+	}
+	else
+	{
+		die('Could not connect: ' . mysqli_error($con));
+	}
+	$sql = "SELECT emp_username from employee where emp_id=$emp_id";
+	$result = mysqli_query($con,$sql);
+	$row = mysqli_fetch_assoc($result);
+	$un = $row["emp_username"];
 ?>
 
 <html>
@@ -34,6 +46,19 @@ li a {
 li a:hover {
     background-color: #813772;
     color: #111;
+}
+
+.lic {
+float:right;
+}
+
+.lic a {
+    display: block;
+    color: #111;
+    background-color: #813772;
+    text-align: center;
+    padding: 14px 30px;
+    text-decoration: none;
 }
 
 .card {
@@ -95,6 +120,7 @@ li a:hover {
   <li><a href="#news">Assigned Issues</a></li>
   <li><a href="#contact">Tab</a></li>
   <li><a href="#about">Tab</a></li>
+  <li class="lic"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <?php
 
@@ -128,7 +154,7 @@ li a:hover {
 		echo "<h4><b>$sn</b></h4> ";
 		echo "<p>$pname</p></div>";
 		echo "<form action='add_issue.php' method='post'><input type='text' name='pname' value=$sn hidden><input type='submit' value='Add Issue' class='button a' id=$sn name='submit'></form>";
-		echo "<form action='add_issue.php' method='post'><input type='text' name='pname' value=$sn hidden><input type='submit' value='View Details' class='button a' id=$sn name='submit'></form></div>";
+		echo "<form action='add_issue.php' method='post'><input type='submit' value='View Details' class='button a' id=$sn name='submit'></form></div>";
 	}
 ?>
 

@@ -11,6 +11,10 @@
 	{
 		die('Could not connect: ' . mysqli_error($con));
 	}
+	$sql = "SELECT emp_username from employee where emp_id=$user";
+	$result = mysqli_query($con,$sql);
+	$row = mysqli_fetch_assoc($result);
+	$un = $row["emp_username"];
 	if(isset($_REQUEST["submit"]))
 	{
 		$pn= $_REQUEST["pname"];
@@ -151,10 +155,12 @@ body {
     <ul class="noBullet">
       <li>
         <label for="username"></label>
-        <input type="text" class="inputFields" id="username" name="username" placeholder="Name" value="<?php echo htmlspecialchars($user);?>" disabled required/>
+        <input type="text" class="inputFields" id="un" name="un" placeholder="Name" value="<?php echo htmlspecialchars($user);?>" hidden required/>
+        <input type="text" class="inputFields" id="username" name="username" placeholder="Name" value="<?php echo htmlspecialchars($un);?>" disabled required/>
       </li>
       <li>
         <label for="pro_name"></label>
+        <input type="text" class="inputFields" id="pn" name="pn" placeholder="Password" value="<?php echo htmlspecialchars($pn);?>" hidden required/>
         <input type="text" class="inputFields" id="pro_name" name="pro_name" placeholder="Password" value="<?php echo htmlspecialchars($pname);?>" disabled required/>
       </li>
       <li>
@@ -183,7 +189,7 @@ body {
      
 ?>     
       <li id="center-btn">
-        <input type="submit" id="join-btn" name="join" alt="Join" value="Log Issue!">
+        <input type="submit" id="join-btn" name="submit" alt="Join" value="Log Issue!">
       </li>
     </ul>
   </form>
