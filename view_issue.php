@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$emp_id = $_SESSION["user"];
+	$user = $_SESSION["user"];
 	$con = mysqli_connect('localhost', 'root', '', 'projectracker');
 	if($con) 
 	{
@@ -10,12 +10,11 @@
 	{
 		die('Could not connect: ' . mysqli_error($con));
 	}
-	$sql = "SELECT emp_username from employee where emp_id=$emp_id";
+	$sql = "SELECT emp_username from employee where emp_id=$user";
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$un = $row["emp_username"];
 ?>
-
 <html>
 <head>
 <style>
@@ -38,9 +37,9 @@ li {
 li a {
     display: block;
     color: #813772;
-    text-align: center;
     padding: 14px 30px;
     text-decoration: none;
+    text-align:center;
 }
 
 li a:hover {
@@ -48,8 +47,37 @@ li a:hover {
     color: #111;
 }
 
+.button {
+  position: relative;
+  width: 200px;
+  left:10px;
+  text-align: center;
+  opacity: 1;
+  margin-top:0.8vh;
+  margin-right:3vh;
+  padding: 12px 48px;
+  color: black;
+  background-color:#813772;
+  border: solid 2px #111;
+  z-index: 1;
+  border-radius: 5px;
+}
 .lic {
 float:right;
+}
+.open
+{
+background-color:#aaffa4 !important;
+}
+
+.progress
+{
+background-color:#ebe4a4 !important;
+}
+
+.closed
+{
+background-color:#dfa1a8 !important;
 }
 
 .lic a {
@@ -69,9 +97,25 @@ float:right;
     height:30%;
     border-radius: 5px;
     text-align:center;
-    padding: 2px 2px;
+    
 }
 
+.card p{
+	text-align:justify;
+	margin-top:30px;
+}
+
+.card h4
+{
+	margin:0;
+	display:block;
+	padding:12px;
+	width:96%;
+	color:#111;
+	font-size:26px;
+	border-radius: 5px;
+}
+	
 #options{
 	opacity:0;
 	display:none;
@@ -79,34 +123,6 @@ float:right;
 
 .card:hover {
 	box-shadow: 12px 40px 80px 20px rgba(0, 0, 0, 1); 
-}
-.button {
-  position: relative;
-  width: 200px;
-  left:10px;
-  text-align: center;
-  opacity: 0;
-  transition: opacity .35s ease;
-  margin-top:0.8vh;
-  margin-right:3vh;
-  padding: 12px 48px;
-  text-align: center;
-  color: black;
-  background-color:#813772;
-  border: solid 2px #111;
-  z-index: 1;
-  border-radius: 5px;
-}
-
-.button:hover
-{
-	background-color:#111;
-	color:#813772;
-}
-
-.card:hover .button 
-{
-  opacity: 1;
 }
 .container {
     padding: 2px 16px;
@@ -116,10 +132,10 @@ float:right;
 
 <body>
 <ul>
+  <li><a href="home_page.php">Back</a></li>
   <li><a class="active" href="view_issue.php">My Issues</a></li>
   <li><a href="#news">Assigned Issues</a></li>
   <li><a href="#contact">Tab</a></li>
-  <li><a href="#about">Tab</a></li>
   <li class="lic"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <?php
@@ -139,22 +155,37 @@ float:right;
 	$row = mysqli_fetch_assoc($result);
 	$emp = $row["emp_id"];*/
 	
-	$sql = "SELECT * from empro where emp_id=$emp_id";
+	$sql = "SELECT * from issue where emp_id=$user";
 	$result = mysqli_query($con,$sql);
 	//echo $result;
 	while($row = mysqli_fetch_assoc($result))
 	{
 		//echo mysqli_num_rows($result);
-		$sn = $row['p_id'];
-		$sql = "SELECT p_name from project where p_id=$sn";
+		$in = $row['issue_name'];
+		$ci = $row["cat_id"];
+		$st = $row["status"];
+		$pi = $row["project_id"];
+		$sql = "SELECT cat_name from issuecat where cat_id=$ci AND p_id=$pi";
 		$res = mysqli_query($con,$sql);
-		$p_name = mysqli_fetch_assoc($res);
-		$pname = $p_name["p_name"];
-		echo "<div class='card' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'><div id='options'><p>Add</p></div> ";
-		echo "<h4><b>$sn</b></h4> ";
-		echo "<p>$pname</p></div>";
-		echo "<form action='add_issue.php' method='post'><input type='text' name='pname' value=$sn hidden><input type='submit' value='Add Issue' class='button a' id=$sn name='submit'></form>";
-		echo "<form action='add_issue.php' method='post'><input type='submit' value='View Details' class='button a' id=$sn name='submit'></form></div>";
+		$c_name = mysqli_fetch_assoc($res);
+		$cn = $c_name["cat_name"];
+		$id = $row["issue_desc"];
+		if(strcmp($st,"Open")==0)
+		{
+			echo "<div class='card open' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
+		}
+		else if(strcmp($st,"In Progress")==0)
+		{
+			echo "<div class='card progress' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
+		}
+		else if(strcmp($st,"Closed")==0)
+		{
+			echo "<div class='card closed' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
+		}
+		echo "<h4>$in</h4> ";
+		echo "<p><b>Issue Description:</b> $id</p>";
+		echo "<p><b>Issue Category:</b> $cn</p></div>";
+		echo "</div>";
 	}
 ?>
 
