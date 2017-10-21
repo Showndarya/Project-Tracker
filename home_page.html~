@@ -1,0 +1,93 @@
+<html>
+<head>
+<style>
+body{
+background-color: #000;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    color: #813772;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #813772;
+    text-align: center;
+    padding: 14px 30px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #813772;
+    color: #000;
+}
+
+.card {
+	background-color: #813772;
+    transition: 0.3s;
+    width: 20%;
+}
+#options{
+opacity:0;
+display:none;
+}
+
+
+
+.card:hover {
+    box-shadow: 0px 0px 150px #000000;
+    -webkit-transition: all 200ms ease-in;
+    -webkit-transform: scale(1.2);
+    -ms-transition: all 200ms ease-in;
+    -ms-transform: scale(1.2);   
+    -moz-transition: all 200ms ease-in;
+    -moz-transform: scale(1.2);
+    transition: all 200ms ease-in;
+    transform: scale(1.2);
+}
+
+.card:hover #options
+{
+display:block;
+opacity:1;
+}
+.container {
+    padding: 2px 16px;
+}
+</style>
+</head>
+
+<body>
+<ul>
+  <li><a class="active" href="#home">My Issues</a></li>
+  <li><a href="#news">Assigned Issues</a></li>
+  <li><a href="#contact">Tab</a></li>
+  <li><a href="#about">Tab</a></li>
+</ul>
+
+<div class="card" style="float:left;margin-left:20vh;margin-top:20vh;">
+  <div class="container">
+  <div id="options">
+  <p>Add</p>
+  </div>
+    <h4><b>John Doe</b></h4> 
+    <p>Architect & Engineer</p> 
+  </div>
+</div>
+
+<div class="card" style="float:left;margin-left:20vh;margin-top:20vh;">
+  <div class="container">
+    <h4><b>John Doe</b></h4> 
+    <p>Architect & Engineer</p> 
+  </div>
+</div>
+</body>
+</html>
