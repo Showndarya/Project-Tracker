@@ -45,7 +45,7 @@
 
 .lic a {
     display: block;
-    color: #813772;
+    color: #fff;
     text-align: center;
     padding: 14px 30px;
     text-decoration: none;
@@ -53,7 +53,7 @@
 
 .lic a:hover {
     background-color: #813772;
-    color: #111;
+    color: #fff;
 }
 
 .licr {
@@ -62,7 +62,7 @@ float:right;
 
 .licr a {
     display: block;
-    color: #111;
+    color: #fff;
     background-color: #813772;
     text-align: center;
     padding: 14px 30px;
@@ -74,6 +74,7 @@ body {
   overflow: hidden;
   background: #111;
   background-repeat: no-repeat;
+  font-size:22px !important;
 }
 
 .signupSection {
@@ -106,9 +107,10 @@ body {
 
 .signupForm {
   width: 70%;
-  padding: 20% 0;
+  padding: 10% 0;
   background: #813772;
   transition: .2s;
+  font-size:22px;
   h2 {
     font-weight: 300;
   }

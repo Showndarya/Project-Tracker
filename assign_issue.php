@@ -20,6 +20,7 @@
 <style>
 body{
 	background-color: #111;
+	font-size:22px;
 }
 ul {
     list-style-type: none;
@@ -27,7 +28,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #111;
-    color: #813772;
+    color: #fff;
 }
 
 li {
@@ -36,7 +37,7 @@ li {
 
 li a {
     display: block;
-    color: #813772;
+    color: #fff;
     padding: 14px 30px;
     text-decoration: none;
     text-align:center;
@@ -44,13 +45,14 @@ li a {
 
 li a:hover {
     background-color: #813772;
-    color: #111;
+    color: #fff;
 }
 
 .button {
   position: relative;
   width: 200px;
   left:10px;
+  font-size:12px;
   text-align: center;
   opacity: 0;
   transition: opacity .35s ease;
@@ -93,7 +95,7 @@ background-color:#dfa1a8 !important;
 
 .lic a {
     display: block;
-    color: #111;
+    color: #fff;
     background-color: #813772;
     text-align: center;
     padding: 14px 30px;
@@ -108,7 +110,6 @@ background-color:#dfa1a8 !important;
     height:30%;
     border-radius: 5px;
     text-align:center;
-    
 }
 
 .card p{
@@ -123,7 +124,7 @@ background-color:#dfa1a8 !important;
 	padding:12px;
 	width:96%;
 	color:#111;
-	font-size:26px;
+	font-size:20px;
 	border-radius: 5px;
 }
 	
@@ -151,7 +152,7 @@ background-color:#dfa1a8 !important;
 }
 .active{
 	background-color: #813772;
-    color: #111;
+    color: #fff;
 }
 
 .lici {

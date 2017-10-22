@@ -20,6 +20,7 @@
 <style>
 body{
 	background-color: #111;
+	font-size:22px;
 }
 ul {
     list-style-type: none;
@@ -36,7 +37,7 @@ li {
 
 li a {
     display: block;
-    color: #813772;
+    color: #fff;
     padding: 14px 30px;
     text-decoration: none;
     text-align:center;
@@ -44,7 +45,7 @@ li a {
 
 li a:hover {
     background-color: #813772;
-    color: #111;
+    color: #fff;
 }
 
 .button {
@@ -56,7 +57,7 @@ li a:hover {
   margin-top:0.8vh;
   margin-right:3vh;
   padding: 12px 48px;
-  color: black;
+  color: #fff;
   background-color:#813772;
   border: solid 2px #111;
   z-index: 1;
@@ -82,7 +83,7 @@ background-color:#dfa1a8 !important;
 
 .lic a {
     display: block;
-    color: #111;
+    color: #fff;
     background-color: #813772;
     text-align: center;
     padding: 14px 30px;
@@ -129,7 +130,7 @@ background-color:#dfa1a8 !important;
 }
 .active{
 	background-color: #813772;
-    color: #111;
+    color: #fff;
 }
 
 .lici {
@@ -181,11 +182,18 @@ vertical-align:middle;
 		$ci = $row["cat_id"];
 		$st = $row["status"];
 		$pi = $row["project_id"];
+		$id = $row["issue_desc"];
+		
+		$sql = "SELECT p_name from project where p_id=$pi";
+		$r = mysqli_query($con,$sql);
+		$ro = mysqli_fetch_assoc($r);
+		$pname = $ro["p_name"];
+		
 		$sql = "SELECT cat_name from issuecat where cat_id=$ci AND p_id=$pi";
 		$res = mysqli_query($con,$sql);
 		$c_name = mysqli_fetch_assoc($res);
 		$cn = $c_name["cat_name"];
-		$id = $row["issue_desc"];
+		
 		if(strcmp($st,"Open")==0)
 		{
 			echo "<div class='card open' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
@@ -199,6 +207,7 @@ vertical-align:middle;
 			echo "<div class='card closed' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
 		}
 		echo "<h4>$in</h4> ";
+		echo "<p><b>Project Name:</b> $pname</p>";
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";
 		echo "</div>";

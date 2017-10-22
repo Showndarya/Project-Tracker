@@ -21,6 +21,8 @@
 <style>
 body{
 	background-color: #111;
+	color:#fff;
+	font-size:22px;
 }
 ul {
     list-style-type: none;
@@ -28,7 +30,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #111;
-    color: #813772;
+    color: #fff;
 }
 
 li {
@@ -37,7 +39,7 @@ li {
 
 li a {
     display: block;
-    color: #813772;
+    color: #fff;
     text-align: center;
     padding: 14px 30px;
     text-decoration: none;
@@ -45,7 +47,7 @@ li a {
 
 li a:hover {
     background-color: #813772;
-    color: #111;
+    color: #fff;
 }
 
 .lic {
@@ -58,7 +60,7 @@ li a:hover {
 }
 .lic a {
     display: block;
-    color: #111;
+    color: #fff;
     background-color: #813772;
     text-align: center;
     padding: 14px 30px;
@@ -86,26 +88,28 @@ li a:hover {
 }
 .button {
   position: relative;
-  width: 200px;
+  width: 180px;
   left:10px;
+  font-size:18px;
   text-align: center;
   opacity: 0;
   transition: opacity .35s ease;
   margin-top:0.8vh;
   margin-right:3vh;
-  padding: 12px 48px;
+  padding: 12px 48px !important;
   text-align: center;
-  color: black;
+  color: white;
   background-color:#813772;
-  border: solid 2px #111;
+  border: solid 2px #fff;
   z-index: 1;
   border-radius: 5px;
+  text-decoration:none;
 }
 
 .button:hover
 {
 	background-color:#111;
-	color:#813772;
+	color:#fff;
 }
 
 .card:hover .button 
@@ -115,10 +119,40 @@ li a:hover {
 .container {
     padding: 2px 16px;
 }
+
 .img{
 width:10%;
 height:10%
 vertical-align:middle;
+}
+
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #111;
+    color:white;
 }
 </style>
 </head>
@@ -161,10 +195,18 @@ vertical-align:middle;
 		echo "<div class='card' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'><div id='options'><p>Add</p></div> ";
 		echo "<h4><b>$sn</b></h4> ";
 		echo "<p>$pname</p></div>";
-		echo "<form action='add_issue.php' method='post'><input type='text' name='pname' value=$sn hidden><input type='submit' value='Add Issue' class='button a' id=$sn name='submit'></form>";
-		echo "<form action='add_issue.php' method='post'><input type='submit' value='View Details' class='button a' id=$sn name='submit'></form></div>";
+		echo "<form action='add_issue.php' method='post'><input type='text' name='pname' value=$sn hidden><input type='submit' value='Add Issue' class='button a'  name='submit'></form>";
+		echo "<a href='#openModal' id=$sn class='button'> View Details</a></div>";
 	}
 ?>
+<div id="openModal" class="modalDialog">
+    <div>	<a href="#close" title="Close" class="close">X</a>
 
+        	<h2><?php echo htmlspecialchars($pname);?></h2>
+
+        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
+        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+    </div>
+</div>
 </body>
 </html>
