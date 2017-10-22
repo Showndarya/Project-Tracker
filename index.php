@@ -7,6 +7,7 @@ body {
   overflow: hidden;
   background: #111;
   background-repeat: no-repeat;
+  font-size:22px;
 }
 
 .signupSection {

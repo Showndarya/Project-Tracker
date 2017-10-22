@@ -20,8 +20,15 @@
 		{
 			session_start();
 			$row = mysqli_fetch_assoc($result);
-			$_SESSION["user"]=$row["id"];
-			header("Location: home_page.php");
+			$ad = $row["admin"];
+			if($ad==0){
+				$_SESSION["user"]=$row["id"];
+				header("Location: home_page.php");
+			}
+			else{
+				$_SESSION["user"]=$row["id"];
+				header("Location: home_page_ad.php");
+			}
 			//echo "in";
 		}
 	}
