@@ -18,6 +18,7 @@
 
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
 body{
 	background-color: #111;
@@ -155,6 +156,13 @@ vertical-align:middle;
     color:white;
 }
 </style>
+<script type="text/javascript">
+  
+  $('l').mouseover(function() {
+  $('.lic').html('Click here to logout');
+});
+
+</script>
 </head>
 
 <body>
@@ -162,7 +170,7 @@ vertical-align:middle;
   <li><a class="active" href="view_issue.php">My Issues</a></li>
   <li><a href="assign_issue.php">Assigned Issues</a></li>
   <li class="lici"><img src="nav_logo.png" class="img"></li>
-  <li class="lic"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
+  <li class="lic"><a href="logout.php">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <?php
 
@@ -192,21 +200,44 @@ vertical-align:middle;
 		$res = mysqli_query($con,$sql);
 		$p_name = mysqli_fetch_assoc($res);
 		$pname = $p_name["p_name"];
+
+    $sql = "SELECT p_desc from project where p_id=$sn";
+    $res = mysqli_query($con,$sql);
+    $p_name = mysqli_fetch_assoc($res);
+    $pdesc = $p_name["p_desc"];
+
 		echo "<div class='card' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'><div id='options'><p>Add</p></div> ";
 		echo "<h4><b>$sn</b></h4> ";
 		echo "<p>$pname</p></div>";
 		echo "<form action='add_issue.php' method='post'><input type='text' name='pname' value=$sn hidden><input type='submit' value='Add Issue' class='button a'  name='submit'></form>";
-		echo "<a href='#openModal' id=$sn class='button'> View Details</a></div>";
+		echo "<a href='#openModal' data-name=$pname data-desc='$pdesc' id='det' class='button'> View Details</a></div>";
 	}
 ?>
 <div id="openModal" class="modalDialog">
     <div>	<a href="#close" title="Close" class="close">X</a>
 
-        	<h2><?php echo htmlspecialchars($pname);?></h2>
-
-        <p>This is a sample modal box that can be created using the powers of CSS3.</p>
-        <p>You could do a lot of things here like have a pop-up ad that shows when your website loads, or create a login/register form for users.</p>
+        	<h2 id="pname"></h2>
+          <p id="pdata"></p>
     </div>
 </div>
+
+<script type="text/javascript">
+
+  $('.button').on('click', {
+    'name': function(element) {
+      return $(element).data('name');
+    },
+    'desc': function(element) {
+      return $(element).data('desc');      
+    },
+  },
+
+  function(e) {
+    $('#pname').html(e.data.name(this));
+    $('#pdata').html(e.data.desc(this));
+  });
+
+
+</script>
 </body>
 </html>

@@ -92,16 +92,15 @@ li a:hover {
   width: 180px;
   left:10px;
   font-size:18px;
-  text-align: center;
   opacity: 0;
   transition: opacity .35s ease;
-  margin-top:0.8vh;
-  margin-right:3vh;
+  margin-top:-0.2vh;
+  margin-right:2vh;
   padding: 12px 48px !important;
-  text-align: center;
-  color: white;
-  background-color:#813772;
-  border: solid 2px #fff;
+  text-align: left !important;
+  color: #111;
+  background-color:transparent;
+  border: solid 0.5px #111;
   z-index: 1;
   border-radius: 5px;
   text-decoration:none;
@@ -109,8 +108,8 @@ li a:hover {
 
 .button:hover
 {
-	background-color:#111;
-	color:#fff;
+	background-color:transparent;
+	color:#111;
 }
 
 .card:hover .button 
@@ -209,7 +208,7 @@ background-color:#dfa1a8 !important;
 	while($row = mysqli_fetch_assoc($result))
 	{
 		//echo mysqli_num_rows($result);
-		$in = $row['issue_name'];
+		$in = $row['issue_id'];
 		$ci = $row["cat_id"];
 		$st = $row["status"];
 		$pi = $row["project_id"];
@@ -241,6 +240,7 @@ background-color:#dfa1a8 !important;
 		echo "<p><b>Project Name:</b> $pname</p>";
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";
+		echo "<form action='manage_project.php' method='post'><input type='text' name='id' value='$in' hidden><input type='submit' value='Manage' class='button a'  name='submit'></form>";
 		echo "</div>";
 	}
 ?>

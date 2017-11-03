@@ -60,14 +60,14 @@ li a:hover {
   margin-right:3vh;
   padding: 12px 48px;
   color: black;
-  background-color:#ccc;
+  background-color:transparent;
   border: solid 2px #111;
   z-index: 1;
   border-radius: 5px;
 }
 .button:hover
 {
-	background-color:#d2d2d2;
+	background-color:transparent;
 	color:#111;
 }
 
@@ -146,7 +146,7 @@ background-color:#dfa1a8 !important;
   border-top: none;
   border-left: none;
   border-right: none;
-  background: #ccc;
+  background: transparent;
   color: white;
   outline: none;
 }
@@ -226,7 +226,7 @@ vertical-align:middle;
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";
 		echo "<form action='update_status.php' method='post'><input type='text' name='id' value=$i hidden>";
-		echo "<input type='text' class='inputFields button' placeholder='Enter new status' name='status' value=''><input type='submit' value='Update Status' class='button' name='submit'></form>";
+		echo "<input type='text' class='inputFields button' placeholder='Enter new status' name='status' value='' required><input type='submit' value='Update Status' class='button' name='submit'></form>";
 		echo "</div>";
 	}
 ?>
