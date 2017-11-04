@@ -28,6 +28,7 @@
 
 <html>
 <head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
 .ulc
 {
@@ -210,10 +211,12 @@ vertical-align:middle;
      
 ?>     
       <li id="center-btn">
-        <input type="submit" id="join-btn" name="submit" alt="Join" value="Log Issue!">
+        <input type="submit" id="join-btn" name="submit" alt="Join" value="Log Issue!" onclick="return toast();">
       </li>
     </ul>
   </form>
 </div>
+
+</script>
 </body>
 </html>

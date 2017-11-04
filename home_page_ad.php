@@ -272,15 +272,15 @@ background-color:#dfa1a8 !important;
 		echo "<p><b>Project Name:</b> $pname</p>";
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";
-		echo "<a href='#openModal' data-id='$iname' data-status='$st' id='det' class='button'> Update Status</a></div>";
+		echo "<a href='#openModal' data-id='$iname' data-name='$in' data-status='$st' id='det' class='button'> Update Status</a></div>";
 		echo "</div>";
 	}
 
 		echo "<div id='openModal' class='modalDialog'>";
    		echo "<div>	<a href='' title='Close' class='close'>X</a>";
 	    echo "<h2 id='iname'></h2>";
-	    echo "<form action='' method='post'>";
-        echo "<input class='inputFields' type='text' name='status' id='idata'/><input type='submit' value='Update Status' id='join-btn'  name='submit'></form></div></div>";       
+	    echo "<form action='update_status_ad.php' method='post'>";
+        echo "<input class='inputFields' type='text' name='ad' value='$ad_id' hidden/><input class='inputFields' type='text' name='status' id='idata'/><input type='text' name='id' id='id' hidden><input type='submit' value='Update Status' id='join-btn'  name='submit'></form></div></div>";       
 
 ?>
 
@@ -293,11 +293,15 @@ background-color:#dfa1a8 !important;
     'desc': function(element) {
       return $(element).data('status');     
     },
+    'id': function(element) {
+      return $(element).data('name');     
+    },
   },
 
   function(e) {
     $('#iname').html(e.data.name(this));
     $('#idata').val(e.data.desc(this));
+    $('#id').val(e.data.id(this));
   });
   </script>
 </body>

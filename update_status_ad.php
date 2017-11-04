@@ -12,16 +12,13 @@
 	{
 		$id = $_REQUEST["id"];
 		$st = $_REQUEST["status"];
+		$ad = $_REQUEST["ad"];
 		echo $st;
 		$sql = "UPDATE issue SET status='$st' where issue_id='$id'";
 		if(mysqli_query($con,$sql)){
-			$sql = "SELECT emp_id from issue where issue_id=$id";
-			$result = mysqli_query($con,$sql);
-			$row = mysqli_fetch_assoc($result);
-			$un = $row["emp_id"];
 			session_start();
-			$_SESSION["user"] = $un;
-			header('Location: assign_issue.php');
+			$_SESSION["user"] = $ad;
+			header('Location: home_page_ad.php');
 		}
 	}
 ?>
