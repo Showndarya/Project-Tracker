@@ -1,4 +1,5 @@
 <?php
+	$pname="";
 	session_start();
 	$ad_id = $_SESSION["user"];
 	$con = mysqli_connect('localhost', 'root', '', 'projectracker');
@@ -14,18 +15,18 @@
 	$result = mysqli_query($con,$sql);
 	$row = mysqli_fetch_assoc($result);
 	$un = $row["ad_un"];
-
-	$sql = "Select p_id from admin where ad_id=$ad_id";
-	$result = mysqli_query($con,$sql);
-	$row = mysqli_fetch_assoc($result);
-	$pid = $row["p_id"];
-
-  $sql = "Select * from project where p_id=$pid";
-  $result = mysqli_query($con,$sql);
-  $row = mysqli_fetch_assoc($result);
-  $pname = $row["p_name"];
-  $pdesc = $row["p_desc"];
-
+	if(isset($_REQUEST["submit"]))
+	{
+		$id= $_REQUEST["id"];
+		$sql = "Select * from issue where issue_id=$id";
+		$result = mysqli_query($con,$sql);
+		$row = mysqli_fetch_assoc($result);
+		$iname = $row["issue_name"];
+		$idesc = $row["issue_desc"];
+		$assign = $row["assign"];
+		$st = $row["status"];
+		//echo $pname;
+	}
 ?>
 
 <html>
@@ -170,23 +171,48 @@ vertical-align:middle;
 </ul>
 <div class="signupSection">
   <div class="info">
-    <h2>Project Details</h2>
+    <h2><?php echo htmlspecialchars($iname);?></h2>
     <img src="pt_logo.png" class="img">
   </div>
-  <form action="update_issue.php" method="POST" class="signupForm" name="signupform">
+  <form action="log_issue.php" method="POST" class="signupForm" name="signupform">
     <ul class="noBullet">
       <li>
-        <label for="pname"></label>
-        <input type="text" class="inputFields" id="un" name="un" placeholder="" value="<?php echo htmlspecialchars($ad_id);?>" hidden required/>
-        <input type="text" class="inputFields" id="pn" name="pn" placeholder="" value="<?php echo htmlspecialchars($pid);?>" hidden required/>
-        <input type="text" class="inputFields" id="pname" name="pname" placeholder="" value="<?php echo htmlspecialchars($pname);?>" required/>
+        <label for="username"></label>
+        <input type="text" class="inputFields" id="un" name="un" placeholder="Name" value="<?php echo htmlspecialchars($user);?>" hidden required/>
+        <input type="text" class="inputFields" id="username" name="username" placeholder="Name" value="<?php echo htmlspecialchars($un);?>" disabled required/>
       </li>
       <li>
-        <label for="pdesc"></label>
-        <textarea rows="7" class="inputFields" id="pdesc" name="pdesc" placeholder="" required><?php echo htmlspecialchars($pdesc);?></textarea>
-      </li>   
+        <label for="pro_name"></label>
+        <input type="text" class="inputFields" id="pn" name="pn" placeholder="Password" value="<?php echo htmlspecialchars($pn);?>" hidden required/>
+        <input type="text" class="inputFields" id="pro_name" name="pro_name" placeholder="Password" value="<?php echo htmlspecialchars($pname);?>" disabled required/>
+      </li>
+      <li>
+        <label for="issue_name"></label>
+        <input type="text" class="inputFields" id="issue_name" name="issue_name" placeholder="Issue Name" value="" required/>
+      </li>
+      <li>
+        <label for="issue_desc"></label>
+        <input type="text" class="inputFields" id="issue_desc" name="issue_desc" placeholder="Issue Description in short" value="" required/>
+      </li>
+<?php
+	  
+	  /*$sql = "SELECT * from issuecat where p_id=$pn";
+	  $result = mysqli_query($con,$sql);
+	  echo "<li>";
+      echo "<label for='email'></label>";
+      echo "<select class='inputFields' name='cat'>";
+	  while($row = mysqli_fetch_assoc($result))
+	  {    
+	  		$id=$row['cat_id'];
+	  		$name=$row['cat_name'];
+	  		echo "<option value=$id> $name</option>";
+      }		
+      echo "</select>"; 
+      echo "</li>";*/
+     
+?>     
       <li id="center-btn">
-        <input type="submit" id="join-btn" name="submit" alt="Join" value="Update Details!">
+        <input type="submit" id="join-btn" name="submit" alt="Join" value="Log Issue!">
       </li>
     </ul>
   </form>

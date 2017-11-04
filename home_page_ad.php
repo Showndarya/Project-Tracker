@@ -18,6 +18,7 @@
 
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
 body{
 	background-color: #111;
@@ -67,6 +68,19 @@ li a:hover {
     text-decoration: none;
 }
 
+.inputFields {
+  margin: 15px 0;
+  font-size: 16px;
+  padding: 10px;
+  width: 250px;
+  border: 1px solid #111;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: #813772;
+  color: white;
+  outline: none;
+}
 .card {
 	box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, .5);
 	background-color: #813772;
@@ -82,6 +96,23 @@ li a:hover {
 #options{
 	opacity:0;
 	display:none;
+}
+
+#join-btn {
+  border: 1px solid #111;
+  background: #813772;
+  font-size: 18px;
+  color: white;
+  margin-top: 20px;
+  padding: 10px 50px;
+  cursor: pointer;
+  transition: .4s;
+}
+
+#join-btn:hover
+{
+	background-color:#111;
+	color:#813772;
 }
 
 .card:hover {
@@ -177,7 +208,7 @@ background-color:#dfa1a8 !important;
 <ul>
   <li><a href="manage_project.php">Manage Projects</a></li>
   <li class="lici"><img src="nav_logo.png" class="img"></li>
-  <li class="lic"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
+  <li class="lic"><a href="logout.php">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <?php
 
@@ -209,6 +240,7 @@ background-color:#dfa1a8 !important;
 	{
 		//echo mysqli_num_rows($result);
 		$in = $row['issue_id'];
+		$iname = $row['issue_name'];
 		$ci = $row["cat_id"];
 		$st = $row["status"];
 		$pi = $row["project_id"];
@@ -240,9 +272,33 @@ background-color:#dfa1a8 !important;
 		echo "<p><b>Project Name:</b> $pname</p>";
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";
-		echo "<form action='manage_project.php' method='post'><input type='text' name='id' value='$in' hidden><input type='submit' value='Manage' class='button a'  name='submit'></form>";
+		echo "<a href='#openModal' data-id='$iname' data-status='$st' id='det' class='button'> Update Status</a></div>";
 		echo "</div>";
 	}
+
+		echo "<div id='openModal' class='modalDialog'>";
+   		echo "<div>	<a href='' title='Close' class='close'>X</a>";
+	    echo "<h2 id='iname'></h2>";
+	    echo "<form action='' method='post'>";
+        echo "<input class='inputFields' type='text' name='status' id='idata'/><input type='submit' value='Update Status' id='join-btn'  name='submit'></form></div></div>";       
+
 ?>
+
+<script type="text/javascript">
+
+  $('.button').on('click', {
+    'name': function(element) {
+      return $(element).data('id');
+    },
+    'desc': function(element) {
+      return $(element).data('status');     
+    },
+  },
+
+  function(e) {
+    $('#iname').html(e.data.name(this));
+    $('#idata').val(e.data.desc(this));
+  });
+  </script>
 </body>
 </html>
