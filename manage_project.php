@@ -58,6 +58,12 @@
     text-decoration: none;
 }
 
+.lici {
+  left: 50%;
+   position: relative;
+   transform: translateX(-50%);
+}
+
 .lic a:hover {
     background-color: #813772;
     color: #fff;

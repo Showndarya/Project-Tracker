@@ -55,7 +55,7 @@ li a:hover {
 	float:right;
 }
 .lici {
-	left: 50%;
+	left: 60%;
    position: relative;
    transform: translateX(-50%);
 }

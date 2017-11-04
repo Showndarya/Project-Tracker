@@ -149,7 +149,7 @@ vertical-align:middle;
 .modalDialog > div {
     width: 400px;
     position: relative;
-    margin: 10% auto;
+    margin: 5% auto;
     padding: 5px 20px 13px 20px;
     border-radius: 10px;
     background: #111;
@@ -216,23 +216,33 @@ vertical-align:middle;
 		$p_name = mysqli_fetch_assoc($res);
 		$pname = $p_name["p_name"];
 
-    $sql = "SELECT p_desc from project where p_id=$sn";
+    $sql = "SELECT * from project where p_id=$sn";
     $res = mysqli_query($con,$sql);
     $p_name = mysqli_fetch_assoc($res);
     $pdesc = $p_name["p_desc"];
+    $psd = $p_name["p_sd"];
+    $ped = $p_name["p_ed"];
+    $ploc = $p_name["p_location"];
+    $pbud = $p_name["p_budget"];
+    $pcli = $p_name["p_client"];
+
 
 		echo "<div class='card' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'><div id='options'><p>Add</p></div> ";
 		echo "<h4><b>#$sn</b></h4> ";
 		echo "<p>$pname</p></div>";
 		echo "<form action='add_issue.php' method='post'><input type='text' name='pname' value=$sn hidden><input type='submit' value='Add Issue' class='button a'  name='submit'></form>";
-		echo "<a href='#openModal' data-name=$pname data-desc='$pdesc' id='det' class='button'> View Details</a></div>";
+		echo "<a href='#openModal' data-name=$pname data-desc='$pdesc' data-sd='$psd' data-ed='$ped' data-loc='$ploc' data-bud='$pbud' data-cli='$pcli' id='det' class='button'> View Details</a></div>";
 	}
 ?>
 <div id="openModal" class="modalDialog">
     <div>	<a href="#close" title="Close" class="close-thik"></a>
-
         	<h2 id="pname"></h2>
-          <p id="pdata"></p>
+          <b>Description:</b> <p id="pdata"></p>
+          <b>Start Date:</b> <p id="psd"></p>
+          <b>End Date:</b> <p id="ped"></p>
+          <b>Location:</b> <p id="ploc"></p>
+          <b>Budget (in rupees):</b> <p id="pbud"></p>
+          <b>Client:</b> <p id="pcli"></p>
     </div>
 </div>
 
@@ -245,11 +255,32 @@ vertical-align:middle;
     'desc': function(element) {
       return $(element).data('desc');      
     },
+    'sd': function(element) {
+      return $(element).data('sd');      
+    },
+    'ed': function(element) {
+      return $(element).data('ed');      
+    },
+    'loc': function(element) {
+      return $(element).data('loc');      
+    },
+    'bud': function(element) {
+      return $(element).data('bud');      
+    },
+    'cli': function(element) {
+      return $(element).data('cli');      
+    },
+
   },
 
   function(e) {
     $('#pname').html(e.data.name(this));
     $('#pdata').html(e.data.desc(this));
+    $('#psd').html(e.data.sd(this));
+    $('#ped').html(e.data.ed(this));
+    $('#ploc').html(e.data.loc(this));
+    $('#pbud').html(e.data.bud(this));
+    $('#pcli').html(e.data.cli(this));
   });
 
 
