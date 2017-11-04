@@ -106,7 +106,7 @@ vertical-align:middle;
         <input type="password" class="inputFields" id="pwd" name="pwd" placeholder="Password" value="" required/>
       </li>
       <li id="center-btn">
-        <input type="submit" id="join-btn" name="submit" alt="Join" value="Log Issue!">
+        <input type="submit" id="join-btn" name="submit" alt="Join" value="Login!">
       </li>
     </ul>
   </form>
