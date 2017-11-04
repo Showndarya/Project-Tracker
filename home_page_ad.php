@@ -201,6 +201,20 @@ background-color:#ebe4a4 !important;
 background-color:#dfa1a8 !important;
 }
 
+[class*='close-'] {
+  color: #813772;
+  font: 30px/100% arial, sans-serif;
+  position: absolute;
+  right: 5px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  top: 5px;
+}
+
+.close-thik:after {
+  content: '✖'; /* UTF-8 symbol */
+}
+
 </style>
 </head>
 
@@ -277,10 +291,10 @@ background-color:#dfa1a8 !important;
 	}
 
 		echo "<div id='openModal' class='modalDialog'>";
-   		echo "<div>	<a href='' title='Close' class='close'>X</a>";
-	    echo "<h2 id='iname'></h2>";
-	    echo "<form action='update_status_ad.php' method='post'>";
-        echo "<input class='inputFields' type='text' name='ad' value='$ad_id' hidden/><input class='inputFields' type='text' name='status' id='idata'/><input type='text' name='id' id='id' hidden><input type='submit' value='Update Status' id='join-btn'  name='submit'></form></div></div>";       
+   	echo "<div>	<a href='' title='Close' class='close-thik'></a>";
+	  echo "<h2 id='iname'></h2>";
+	  echo "<form action='update_status_ad.php' method='post'>";
+    echo "<input class='inputFields' type='text' name='ad' value='$ad_id' hidden/>Enter new Status: <input class='inputFields' type='text' name='status' id='idata'/><input type='text' name='id' id='id' hidden><input type='submit' value='Update Status' id='join-btn'  name='submit'></form></div></div>";       
 
 ?>
 

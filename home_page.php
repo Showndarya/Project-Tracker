@@ -155,6 +155,21 @@ vertical-align:middle;
     background: #111;
     color:white;
 }
+
+[class*='close-'] {
+  color: #813772;
+  font: 30px/100% arial, sans-serif;
+  position: absolute;
+  right: 5px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 #fff;
+  top: 5px;
+}
+
+.close-thik:after {
+  content: '✖'; /* UTF-8 symbol */
+}
+
 </style>
 <script type="text/javascript">
   
@@ -214,7 +229,7 @@ vertical-align:middle;
 	}
 ?>
 <div id="openModal" class="modalDialog">
-    <div>	<a href="#close" title="Close" class="close">X</a>
+    <div>	<a href="#close" title="Close" class="close-thik"></a>
 
         	<h2 id="pname"></h2>
           <p id="pdata"></p>
