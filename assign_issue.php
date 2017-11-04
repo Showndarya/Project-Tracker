@@ -175,7 +175,7 @@ vertical-align:middle;
   <li><a href="view_issue.php">My Issues</a></li>
   <li><a class="active" href="assign_issue.php">Assigned Issues</a></li>
   <li class="lici"><img src="nav_logo.png" class="img"></li>
-  <li class="lic"><a href="logout.php">Welcome, <?php echo htmlspecialchars($un);?></a></li>
+  <li class="lic"><a href="logout.php">Click to Logout, <?php echo htmlspecialchars($un);?></a></li>
 </ul>
 <?php
 

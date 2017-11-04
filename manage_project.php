@@ -215,7 +215,7 @@ div.tab button.active {
   <div class="tab">
     <button class="tab tablinks" onclick="openTab(event, 'PD')" id="defaultOpen">Project Details</button>
     <button class="tab tablinks" onclick="openTab(event, 'AI')">Assign Issue</button>
-  <li class="licr"><a href="logout.php">Welcome, <?php echo htmlspecialchars($un);?></a></li>
+  <li class="licr"><a href="logout.php">Click to Logout, <?php echo htmlspecialchars($un);?></a></li>
   </div>
 </ul>
 
