@@ -220,7 +220,7 @@ background-color:#dfa1a8 !important;
 
 <body>
 <ul>
-  <li><a href="manage_project.php">Manage Projects</a></li>
+  <li><a href="manage_project.php">Manage</a></li>
   <li class="lici"><img src="nav_logo.png" class="img"></li>
   <li class="lic"><a href="logout.php">Welcome, <?php echo htmlspecialchars($un);?></a></li>
 </ul>

@@ -160,36 +160,150 @@ width:60%;
 vertical-align:middle;
 }
 
+div.tab {
+    overflow: hidden;
+    text-decoration: none;
+}
+
+div.tab button {
+    color:#fff;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 30px;
+    margin-left: 0px;
+    margin-right: 0px;
+    transition: 0.3s;
+    font-size: 22px;
+    text-align: center;
+}
+
+div.tab button:hover {
+    background-color: #813772;
+}
+
+div.tab button.active {
+    background-color: #813772;
+}
+
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
 </style>
 </head>
 <body>
 <ul class="ulc">
   <li class="lic"><a href="home_page_ad.php">Back</a></li>
-  <li class="lic"><a href="manage_project.php">Manage Projects</a></li>
-  <li class="licr"><a href="">Welcome, <?php echo htmlspecialchars($un);?></a></li>
-</ul>
-<div class="signupSection">
-  <div class="info">
-    <h2>Project Details</h2>
-    <img src="pt_logo.png" class="img">
+  <div class="tab">
+    <button class="tab tablinks" onclick="openTab(event, 'PD')" id="defaultOpen">Project Details</button>
+    <button class="tab tablinks" onclick="openTab(event, 'AI')">Assign Issue</button>
+  <li class="licr"><a href="logout.php">Welcome, <?php echo htmlspecialchars($un);?></a></li>
   </div>
-  <form action="update_issue.php" method="POST" class="signupForm" name="signupform">
-    <ul class="noBullet">
-      <li>
-        <label for="pname"></label>
-        <input type="text" class="inputFields" id="un" name="un" placeholder="" value="<?php echo htmlspecialchars($ad_id);?>" hidden required/>
-        <input type="text" class="inputFields" id="pn" name="pn" placeholder="" value="<?php echo htmlspecialchars($pid);?>" hidden required/>
-        <input type="text" class="inputFields" id="pname" name="pname" placeholder="" value="<?php echo htmlspecialchars($pname);?>" required/>
-      </li>
-      <li>
-        <label for="pdesc"></label>
-        <textarea rows="7" class="inputFields" id="pdesc" name="pdesc" placeholder="" required><?php echo htmlspecialchars($pdesc);?></textarea>
-      </li>   
-      <li id="center-btn">
-        <input type="submit" id="join-btn" name="submit" alt="Join" value="Update Details!">
-      </li>
-    </ul>
-  </form>
+</ul>
+
+
+
+<div id="PD" class="tabcontent" >
+  <div class="signupSection">
+    <div class="info">
+      <h2>Project Details</h2>
+      <img src="pt_logo.png" class="img">
+    </div>
+    <form action="update_issue.php" method="POST" class="signupForm" name="signupform">
+      <ul class="noBullet">
+        <li>
+          <label for="pname"></label>
+          <input type="text" class="inputFields" id="un" name="un" placeholder="" value="<?php echo htmlspecialchars($ad_id);?>" hidden required/>
+          <input type="text" class="inputFields" id="pn" name="pn" placeholder="" value="<?php echo htmlspecialchars($pid);?>" hidden required/>
+          <input type="text" class="inputFields" id="pname" name="pname" placeholder="" value="<?php echo htmlspecialchars($pname);?>" required/>
+        </li>
+        <li>
+          <label for="pdesc"></label>
+          <textarea rows="7" class="inputFields" id="pdesc" name="pdesc" placeholder="" required><?php echo htmlspecialchars($pdesc);?></textarea>
+        </li>   
+        <li id="center-btn">
+          <input type="submit" id="join-btn" name="submit" alt="Join" value="Update Details!">
+        </li>
+      </ul>
+    </form>
+  </div>
 </div>
+
+<div id="AI" class="tabcontent" >
+  <div class="signupSection">
+    <div class="info">
+      <h2>Assign Issue</h2>
+      <img src="pt_logo.png" class="img">
+    </div>
+    <form action="assign_issue_ad.php" method="POST" class="signupForm" name="signupform">
+      <ul class="noBullet">
+      <input type="text" class="inputFields" id="un" name="un" placeholder="" value="<?php echo htmlspecialchars($ad_id);?>" hidden required/>
+        <?php
+    
+          $sql = "SELECT issue_id,issue_name FROM issue WHERE project_id=$pid AND assign=0";
+          $result = mysqli_query($con,$sql);
+          echo "<li>";
+          echo "<label for='issue'>Select Issue: </label><br><br>";
+          echo "<select class='inputFields' name='issue'>";
+          while($row = mysqli_fetch_assoc($result))
+          {    
+              $id=$row['issue_id'];
+              $name=$row['issue_name'];
+              echo "<option value=$id> $name</option>";
+          }   
+          echo "</select>"; 
+          echo "</li><br>";
+
+          $sql = "SELECT emp_id FROM empro WHERE p_id=$pid";
+          $result = mysqli_query($con,$sql);
+          echo "<li>";
+          echo "<label for='emp'>Select Employee: </label><br><br>";
+          echo "<select class='inputFields' name='emp'>";
+          while($row = mysqli_fetch_assoc($result))
+          {    
+              $eid = $row['emp_id'];
+              $sql = "SELECT emp_name FROM employee WHERE emp_id=$eid";
+              $res = mysqli_query($con,$sql);
+              $en = mysqli_fetch_assoc($res);
+              $ename = $en["emp_name"];
+              echo "<option value=$eid> $ename</option>";
+          }   
+          echo "</select>"; 
+          echo "</li>";
+     
+      ?>       
+        <li id="center-btn">
+          <input type="submit" id="join-btn" name="submit" alt="Join" value="Assign Issue!">
+        </li>
+      </ul>
+    </form>
+  </div>
+</div>
+
+<script>
+function openTab(evt, Name) {
+
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(Name).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+document.getElementById("defaultOpen").click();
+</script>
 </body>
 </html>
