@@ -35,7 +35,7 @@
 
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="manage_project.css"> </head>
+<link rel="stylesheet" type="text/css" href="manage_project.css">
 </head>
 <body>
 <ul class="ulc">
