@@ -12,13 +12,10 @@
 	{
 		$id = $_REQUEST["id"];
 		$st = $_REQUEST["status"];
+		$un = $_REQUEST["eid"];
 		echo $st;
 		$sql = "UPDATE issue SET status='$st' where issue_id='$id'";
 		if(mysqli_query($con,$sql)){
-			$sql = "SELECT emp_id from issue where issue_id=$id";
-			$result = mysqli_query($con,$sql);
-			$row = mysqli_fetch_assoc($result);
-			$un = $row["emp_id"];
 			session_start();
 			$_SESSION["user"] = $un;
 			header('Location: assign_issue.php');

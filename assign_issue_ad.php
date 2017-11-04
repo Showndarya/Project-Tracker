@@ -14,7 +14,7 @@
 		$id = $_REQUEST["issue"];
 		$eid = $_REQUEST["emp"];
 		echo $st;
-		$sql = "UPDATE issue SET assign=1 WHERE issue_id='$id' AND emp_id='$eid'";
+		$sql = "UPDATE issue SET assign=1, assign_to='$eid' WHERE issue_id='$id'";
 		if(mysqli_query($con,$sql)){
 			session_start();
 			$_SESSION["user"] = $un;

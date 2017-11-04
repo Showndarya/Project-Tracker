@@ -194,7 +194,7 @@ vertical-align:middle;
 	$row = mysqli_fetch_assoc($result);
 	$emp = $row["emp_id"];*/
 	
-	$sql = "SELECT * from issue where emp_id=$user and assign='1'";
+	$sql = "SELECT * from issue where assign_to=$user and assign='1'";
 	$result = mysqli_query($con,$sql);
 	//echo $result;
 	while($row = mysqli_fetch_assoc($result))
@@ -233,7 +233,7 @@ vertical-align:middle;
 		echo "<p><b>Project Name:</b> $pname</p>";
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";
-		echo "<form action='update_status.php' method='post'><input type='text' name='id' value=$i hidden>";
+		echo "<form action='update_status.php' method='post'><input type='text' name='eid' value='$user' hidden><input type='text' name='id' value=$i hidden>";
 		echo "<input type='text' class='inputFields button' placeholder='Enter new status' name='status' value='' required><input type='submit' value='Update Status' class='button' name='submit'></form>";
 		echo "</div>";
 	}
