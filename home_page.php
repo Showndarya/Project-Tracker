@@ -19,6 +19,7 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="home_page.js"></script>
 <style>
 body{
 	background-color: #111;
@@ -245,45 +246,5 @@ vertical-align:middle;
           <b>Client:</b> <p id="pcli"></p>
     </div>
 </div>
-
-<script type="text/javascript">
-
-  $('.button').on('click', {
-    'name': function(element) {
-      return $(element).data('name');
-    },
-    'desc': function(element) {
-      return $(element).data('desc');      
-    },
-    'sd': function(element) {
-      return $(element).data('sd');      
-    },
-    'ed': function(element) {
-      return $(element).data('ed');      
-    },
-    'loc': function(element) {
-      return $(element).data('loc');      
-    },
-    'bud': function(element) {
-      return $(element).data('bud');      
-    },
-    'cli': function(element) {
-      return $(element).data('cli');      
-    },
-
-  },
-
-  function(e) {
-    $('#pname').html(e.data.name(this));
-    $('#pdata').html(e.data.desc(this));
-    $('#psd').html(e.data.sd(this));
-    $('#ped').html(e.data.ed(this));
-    $('#ploc').html(e.data.loc(this));
-    $('#pbud').html(e.data.bud(this));
-    $('#pcli').html(e.data.cli(this));
-  });
-
-
-</script>
 </body>
 </html>
