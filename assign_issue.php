@@ -56,7 +56,7 @@ li a:hover {
   text-align: center;
   opacity: 0;
   transition: opacity .35s ease;
-  margin-top:0.8vh;
+  margin-top:0.5vh;
   margin-right:3vh;
   padding: 12px 48px;
   color: black;
@@ -114,17 +114,17 @@ background-color:#dfa1a8 !important;
 
 .card p{
 	text-align:justify;
-	margin-top:30px;
+	margin-top:20px;
 }
 
 .card h4
 {
 	margin:0;
 	display:block;
-	padding:12px;
+	padding:4px;
 	width:96%;
 	color:#111;
-	font-size:20px;
+	font-size:22px;
 	border-radius: 5px;
 }
 	
@@ -140,7 +140,7 @@ background-color:#dfa1a8 !important;
     padding: 2px 16px;
 }
 .inputFields {
-  padding: 10px;
+  padding: 3px;
   width: 150px;
   border: 1px solid #111;
   border-top: none;
@@ -205,24 +205,32 @@ vertical-align:middle;
 		$ci = $row["cat_id"];
 		$st = $row["status"];
 		$pi = $row["project_id"];
+
+		$sql = "SELECT p_name from project where p_id=$pi";
+		$r = mysqli_query($con,$sql);
+		$ro = mysqli_fetch_assoc($r);
+		$pname = $ro["p_name"];
+
 		$sql = "SELECT cat_name from issuecat where cat_id=$ci AND p_id=$pi";
 		$res = mysqli_query($con,$sql);
 		$c_name = mysqli_fetch_assoc($res);
 		$cn = $c_name["cat_name"];
 		$id = $row["issue_desc"];
+
 		if(strcmp($st,"Open")==0)
 		{
-			echo "<div class='card open' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
+			echo "<div class='card open' style='float:left;margin-left:15vh;margin-top:7vh;'><div class='container'>";
 		}
 		else if(strcmp($st,"In Progress")==0)
 		{
-			echo "<div class='card progress' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
+			echo "<div class='card progress' style='float:left;margin-left:15vh;margin-top:7vh;'><div class='container'>";
 		}
 		else if(strcmp($st,"Closed")==0)
 		{
-			echo "<div class='card closed' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
+			echo "<div class='card closed' style='float:left;margin-left:15vh;margin-top:7vh;'><div class='container'>";
 		}
-		echo "<h4>$in</h4> ";
+		echo "<h4>#$in</h4> ";
+		echo "<p><b>Project Name:</b> $pname</p>";
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";
 		echo "<form action='update_status.php' method='post'><input type='text' name='id' value=$i hidden>";

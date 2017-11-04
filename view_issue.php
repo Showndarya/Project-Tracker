@@ -206,7 +206,7 @@ vertical-align:middle;
 		{
 			echo "<div class='card closed' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'>";
 		}
-		echo "<h4>$in</h4> ";
+		echo "<h4>#$in</h4> ";
 		echo "<p><b>Project Name:</b> $pname</p>";
 		echo "<p><b>Issue Description:</b> $id</p>";
 		echo "<p><b>Issue Category:</b> $cn</p></div>";

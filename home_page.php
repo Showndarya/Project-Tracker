@@ -222,7 +222,7 @@ vertical-align:middle;
     $pdesc = $p_name["p_desc"];
 
 		echo "<div class='card' style='float:left;margin-left:15vh;margin-top:10vh;'><div class='container'><div id='options'><p>Add</p></div> ";
-		echo "<h4><b>$sn</b></h4> ";
+		echo "<h4><b>#$sn</b></h4> ";
 		echo "<p>$pname</p></div>";
 		echo "<form action='add_issue.php' method='post'><input type='text' name='pname' value=$sn hidden><input type='submit' value='Add Issue' class='button a'  name='submit'></form>";
 		echo "<a href='#openModal' data-name=$pname data-desc='$pdesc' id='det' class='button'> View Details</a></div>";
