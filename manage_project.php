@@ -25,6 +25,11 @@
   $row = mysqli_fetch_assoc($result);
   $pname = $row["p_name"];
   $pdesc = $row["p_desc"];
+  $psd = $row["p_sd"];
+  $ped = $row["p_ed"];
+  $ploc = $row["p_location"];
+  $pbud = $row["p_budget"];
+  $pcli = $row["p_client"];
 
 ?>
 
@@ -109,7 +114,7 @@ body {
 
 .signupForm {
   width: 70%;
-  padding: 10% 0;
+  padding: 5% 0;
   background: #813772;
   transition: .2s;
   font-size:22px;
@@ -155,7 +160,7 @@ body {
 }
 
 .img{
-padding-top: 100%;
+padding-top: 90%;
 width:60%;
 vertical-align:middle;
 }
@@ -226,8 +231,23 @@ div.tab button.active {
         </li>
         <li>
           <label for="pdesc"></label>
-          <textarea rows="7" class="inputFields" id="pdesc" name="pdesc" placeholder="" required><?php echo htmlspecialchars($pdesc);?></textarea>
-        </li>   
+          <textarea rows="5" class="inputFields" id="pdesc" name="pdesc" placeholder="" required><?php echo htmlspecialchars($pdesc);?></textarea>
+        </li> 
+        <li>
+          <input type="text" class="inputFields" id="psd" name="psd" placeholder="Project Start Date" value="<?php echo htmlspecialchars($psd);?>" required/>
+        </li>  
+        <li>
+          <input type="text" class="inputFields" id="ped" name="ped" placeholder="Project End Date" value="<?php echo htmlspecialchars($ped);?>" required/>
+        </li>
+        <li>
+          <input type="text" class="inputFields" id="ploc" name="ploc" placeholder="Project Location" value="<?php echo htmlspecialchars($ploc);?>" required/>
+        </li>
+        <li>
+          <input type="text" class="inputFields" id="pbud" name="pbud" placeholder="Project Budget" value="<?php echo htmlspecialchars($pbud);?>" required/>
+        </li>
+        <li>
+          <input type="text" class="inputFields" id="pcli" name="pcli" placeholder="Project Client" value="<?php echo htmlspecialchars($pcli);?>" required/>
+        </li>
         <li id="center-btn">
           <input type="submit" id="join-btn" name="submit" alt="Join" value="Update Details!">
         </li>
