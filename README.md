@@ -1,5 +1,5 @@
 <p align="center">
-<img width="300" height="300" src="https://user-images.githubusercontent.com/25130101/38166272-db95e708-353e-11e8-9c90-9a6aec5b05d8.png"/>
+<img width="200" height="200" src="https://user-images.githubusercontent.com/25130101/38166272-db95e708-353e-11e8-9c90-9a6aec5b05d8.png"/>
 </p>
 
 ## Project Tracker
